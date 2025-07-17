@@ -49,7 +49,7 @@ public class PersonController {
     public List<Person> PersonByName(@PathVariable("name") String name) {
         return personRepository.findByName(name);
     }
-
+ 
     /**
      * Handles HTTP GET requests for retrieving all persons.
      *
