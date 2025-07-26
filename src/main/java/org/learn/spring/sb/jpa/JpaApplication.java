@@ -2,7 +2,6 @@ package org.learn.spring.sb.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import lombok.extern.java.Log;
 
 @SpringBootApplication
 public class JpaApplication {

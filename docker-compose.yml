@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  jpadb: 
+    image: postgres:latest
+    #restart: always
+    container_name: jpadb 
+    environment:
+        #POSTGRES_HOST_AUTH_METHOD: trust
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: admin
+        POSTGRES_DB: jpadb
+    ports:
+        - "5432:5432"
+    volumes:
+        - /Users/brijeshmarathe/Documents/Projects/pgData:/var/lib/postgresql/data
+    networks:
+      - jpa-network
+  jpaapp:
+    container_name: jpaapp
+    restart: always
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    ports:
+    - "8080:8080"
+    depends_on:
+      - jpadb
+    networks:
+      - jpa-network
+    environment:
+      - DB_URL=jdbc:postgresql://jpadb:5432/jpadb
+      - DB_USER=postgres
+      - DB_PASSWORD=admin
+      - DB_DRIVER=org.postgresql.Driver
+networks:
+  jpa-network:
+    driver: bridge

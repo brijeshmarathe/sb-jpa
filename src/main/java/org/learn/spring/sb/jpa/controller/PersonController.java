@@ -45,11 +45,17 @@ public class PersonController {
     public void deletPerson(@PathVariable("id") Long id) {
         personRepository.deleteById(id);
     }
+
     @GetMapping(value = "/person/byname/{name}")
     public List<Person> PersonByName(@PathVariable("name") String name) {
         return personRepository.findByName(name);
     }
- 
+    
+    @GetMapping(value = "/person/bylocation/{location}")    
+    public List<Person> PersonByLocation(@PathVariable("location") String location) {
+        return personRepository.findByLocation(location);
+    }
+
     /**
      * Handles HTTP GET requests for retrieving all persons.
      *
